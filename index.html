@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>server-sent-events</title>
+</head>
+<body>
+    <main></main>
+
+    <script>
+        container = document.querySelector('main')
+        let event_source = new EventSource('events.php')
+        event_source.addEventListener('message', event => {
+            container.innerText += event.data
+        })
+    </script>
+</body>
+</html>
