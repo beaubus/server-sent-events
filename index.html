@@ -8,9 +8,17 @@
 
     <script>
         container = document.querySelector('main')
+
         let event_source = new EventSource('events.php')
+
         event_source.addEventListener('message', event => {
             container.innerText += event.data
+        })
+
+        // Close the connection, so the browser doesn't attempt to reconnect
+        event_source.addEventListener('stop', event => {
+            container.innerText += '\n' + event.data
+            event_source.close()
         })
     </script>
 </body>
